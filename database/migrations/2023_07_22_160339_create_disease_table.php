@@ -8,7 +8,7 @@ class CreateDiseaseTable extends Migration
 {
     public function up()
     {
-        Schema::create('disease', function (Blueprint $table) {
+        Schema::create('diseases', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('determine');

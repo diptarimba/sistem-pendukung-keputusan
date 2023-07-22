@@ -2,7 +2,7 @@
 
 @section('tab-title', 'Symptom')
 
-@section('header')
+@section('header-custom')
 
 @endSection
 
@@ -28,7 +28,7 @@
 </x-cards.fullpage>
 <x-addon />
 @endsection
-@section('content')
+@section('footer-custom')
 <script>
 $(document).ready(() => {
 	var table = $('.datatables-target-exec').DataTable({
@@ -56,4 +56,4 @@ $(document).ready(() => {
 	}, ...optionDatatables});
 })
 </script>
-@endsecttion
+@endsection

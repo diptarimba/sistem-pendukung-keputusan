@@ -8,7 +8,7 @@ class CreateKnowledgeTable extends Migration
 {
     public function up()
     {
-        Schema::create('knowledge', function (Blueprint $table) {
+        Schema::create('knowledges', function (Blueprint $table) {
             $table->id();
             $table->string('measure_of_belief');
             $table->string('measure_of_disbelief');

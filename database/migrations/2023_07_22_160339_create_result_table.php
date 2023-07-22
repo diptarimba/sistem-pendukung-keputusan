@@ -8,7 +8,7 @@ class CreateResultTable extends Migration
 {
     public function up()
     {
-        Schema::create('result', function (Blueprint $table) {
+        Schema::create('results', function (Blueprint $table) {
             $table->id();
             $table->string('date');
             $table->string('disease');
