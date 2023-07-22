@@ -11,7 +11,7 @@
     <x-cards.fullpage>
         <x-slot name="header">
             <x-cards.header title="User Admin" />
-            <a class="btn btn-primary" href="{{ route('user.create']) }}">Tambah Data</a>
+            <a class="btn btn-primary" href="{{ route('user.create') }}">Tambah Data</a>
         </x-slot>
         <x-slot name="body">
             <div class="table-responsive">
