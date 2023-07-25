@@ -10,6 +10,10 @@
     <!-- Volt CSS -->
     <link type="text/css" href="{{ asset('css/volt.css') }}" rel="stylesheet">
 
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{asset('css/owl.theme.default.min.css') }}">
+
     <!-- Chartist -->
     {{-- <link type="text/css" href="{{asset('vendor/chartist/dist/chartist.min.css')}}" rel="stylesheet"> --}}
     {{-- <link type="text/css" href="{{asset('vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css')}}" rel="stylesheet"> --}}
@@ -85,8 +89,10 @@
 
 @section('footer')
     <!-- JQuery -->
-    <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}" crossorigin="anonymous"></script>
-    <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}" crossorigin="anonymous"></script>
+    <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
+
+    <!-- OwlCarousel -->
+    <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
 
     <!-- Core -->
     <script src="{{ asset('vendor/@popperjs/core/dist/umd/popper.min.js') }}"></script>

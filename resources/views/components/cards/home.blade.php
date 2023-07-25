@@ -1,4 +1,4 @@
-<a href="{{$url ?? ''}}" class="mb-2 col-xl-4 col-sm-4 col-12">
+<a href="{{$url}}" class="mb-2 col-xl-4 col-sm-4 col-12">
     <div class="card card-outline card-primary mt-2 border-0">
         <div class="card-body">
             <div class="row d-block d-xl-flex align-items-center">
@@ -9,17 +9,15 @@
                     </div>
                     <div class="d-sm-none">
                         <h2 class="fw-extrabold h5">{{$text}}</h2>
-                        <h3 class="mb-1 {{$adder ?? ''}}">{{number_format($value, 0, ",", ".")}} {{$unit ?? ''}}</h3>
+                        <h3 class="mb-1 {{$adder ?? ''}}">{{number_format($value, 0, ",", ".")}} {{$unit}}</h3>
                     </div>
                 </div>
                 <div class="col-12 col-xl-7 px-xl-0">
                     <div class="d-none d-sm-block">
                         <h2 class="h6 text-gray-400 mb-0">{{$text}}</h2>
-                        <h3 class="fw-extrabold mb-2 {{$adder ?? ''}}">{{number_format($value, 0, ",", ".")}} {{$unit ?? '' }}</h3>
+                        <h3 class="fw-extrabold mb-2 {{$adder ?? ''}}">{{number_format($value, 0, ",", ".")}} {{$unit}}</h3>
                     </div>
                     <hr/>
-                    <h4>{{$descTitle ?? ''}}</h4>
-                    <p>{{$description ?? ''}}</p>
                     <button class="btn btn-primary">View Details</button>
                 </div>
             </div>
