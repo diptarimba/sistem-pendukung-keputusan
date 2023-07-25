@@ -10,10 +10,10 @@ class CreateKnowledgeTable extends Migration
     {
         Schema::create('knowledge', function (Blueprint $table) {
             $table->id();
-            $table->string('measure_of_belief');
-            $table->string('measure_of_disbelief');
-            $table->string('disease_id');
-            $table->string('symtom_id');
+            $table->decimal('measure_of_belief', 11, 1);
+            $table->decimal('measure_of_disbelief', 11, 1);
+            $table->unsignedBigInteger('disease_id');
+            $table->unsignedBigInteger('symptom_id');
             $table->timestamps();
         });
     }

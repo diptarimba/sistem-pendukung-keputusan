@@ -18,10 +18,11 @@
 			method="post" enctype="multipart/form-data">
 			@csrf
 			<x-forms.put-method />
-			<x-forms.input required="" label="Measure of Belief" name="measure_of_belief" :value="@$Knowledge->measure_of_belief" />
-			<x-forms.input required="" label="Measure of Disbelief" name="measure_of_disbelief" :value="@$Knowledge->measure_of_disbelief" />
-			<x-forms.input required="" label="disease_id" name="disease_id" :value="@$Knowledge->disease_id" />
-			<x-forms.input required="" label="symtom_id" name="symtom_id" :value="@$Knowledge->symtom_id" />
+            <x-forms.select label="Disease" name="disease_id" :items="$disease" :value="@$knowledge->disease_id"/>
+            <x-forms.select label="Symptom" name="symptom_id" :items="$symptom" :value="@$knowledge->symptom_id"/>
+			<x-forms.input required="" label="Measure of Belief" name="measure_of_belief" :value="@$knowledge->measure_of_belief" />
+			<x-forms.input required="" label="Measure of Disbelief" name="measure_of_disbelief" :value="@$knowledge->measure_of_disbelief" />
+
 		</form>
 		<button form="form" class="btn btn-outline-primary btn-pill">Submit</button>
 	</x-slot>

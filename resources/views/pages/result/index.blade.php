@@ -10,7 +10,7 @@
 <x-breadcrumbs category="Result" href="{{ route('result.index') }}" current="index" /><x-cards.fullpage>
 	<x-slot name="header">
 		<x-cards.header title="Result" />
-		<a class="btn btn-primary" href="{{ route('result.create') }}">Tambah Data</a>
+		{{-- <a class="btn btn-primary" href="{{ route('result.create') }}">Tambah Data</a> --}}
 	</x-slot>
 	<x-slot name="body">
 		<div class="table-responsive">

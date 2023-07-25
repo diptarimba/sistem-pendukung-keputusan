@@ -19,8 +19,8 @@
 					<th>No</th>
 					<th>Measure of Belief</th>
 					<th>Measure of Disbelief</th>
-					<th>disease_id</th>
-					<th>symtom_id</th>
+					<th>Disease</th>
+					<th>Symptom</th>
 					<th>Action</th>
 				</thead>
 				<tbody>
@@ -54,12 +54,12 @@ $(document).ready(() => {
 				name: 'measure_of_disbelief'
 			},
 			{
-				data: 'disease_id',
-				name: 'disease_id'
+				data: 'disease.name',
+				name: 'disease.name'
 			},
 			{
-				data: 'symtom_id',
-				name: 'symtom_id'
+				data: 'symptom.name',
+				name: 'symptom.name'
 			},
 			{
 				data: 'action',

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Disease;
 use App\Models\Knowledge;
+use App\Models\Symptom;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -11,7 +13,7 @@ class KnowledgeController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $knowledge = Knowledge::select();
+            $knowledge = Knowledge::with('disease', 'symptom')->select();
             return datatables()->of($knowledge)
                 ->addIndexColumn()
                 ->addColumn('action', function($query) {
@@ -36,7 +38,10 @@ class KnowledgeController extends Controller
 
     public function create()
     {
-        return view('pages.knowledge.create-edit');
+        $disease = Disease::get()->pluck('name', 'id');
+        $symptom = Symptom::get()->pluck('name', 'id');
+
+        return view('pages.knowledge.create-edit', compact('disease', 'symptom'));
     }
 
     public function store(Request $request)
@@ -45,7 +50,7 @@ class KnowledgeController extends Controller
             'measure_of_belief' => 'required',
             'measure_of_disbelief' => 'required',
             'disease_id' => 'required',
-            'symtom_id' => 'required',
+            'symptom_id' => 'required',
         ]);
 
         Knowledge::create($request->all());
@@ -57,7 +62,10 @@ class KnowledgeController extends Controller
 
     public function edit(Knowledge $knowledge)
     {
-        return view('pages.knowledge.create-edit', compact('knowledge'));
+        $disease = Disease::get()->pluck('name', 'id');
+        $symptom = Symptom::get()->pluck('name', 'id');
+
+        return view('pages.knowledge.create-edit', compact('knowledge','disease', 'symptom'));
     }
 
     public function update(Request $request, Knowledge $knowledge)
@@ -66,7 +74,7 @@ class KnowledgeController extends Controller
             'measure_of_belief' => 'required',
             'measure_of_disbelief' => 'required',
             'disease_id' => 'required',
-            'symtom_id' => 'required',
+            'symptom_id' => 'required',
         ]);
 
         $knowledge->update($request->all());

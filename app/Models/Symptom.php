@@ -12,7 +12,7 @@ class Symptom extends Model
 
     public function knowledge()
     {
-        return $this->OneToMany(knowledge::class, 'symtom_id', 'id');
+        return $this->OneToMany(Knowledge::class, 'symptom_id', 'id');
     }
 
 }

@@ -10,17 +10,17 @@ class Knowledge extends Model
         'measure_of_belief',
         'measure_of_disbelief',
         'disease_id',
-        'symtom_id',
+        'symptom_id',
     ];
 
     public function disease()
     {
-        return $this->belongsTo(disease::class, 'disease_id', 'id');
+        return $this->belongsTo(Disease::class, 'disease_id', 'id');
     }
 
     public function symptom()
     {
-        return $this->belongsTo(symptom::class, 'symtom_id', 'id');
+        return $this->belongsTo(Symptom::class, 'symptom_id', 'id');
     }
 
 }
