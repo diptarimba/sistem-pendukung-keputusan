@@ -18,7 +18,7 @@
                 method="post" enctype="multipart/form-data">
                 @csrf
                 <x-forms.put-method />
-                <x-forms.input required="" label="Name" name="name" :value="@$Symptom->name" />
+                <x-forms.input required="" label="Name" name="name" :value="@$symptom->name" />
             </form>
             <button form="form" class="btn btn-outline-primary btn-pill">Submit</button>
         </x-slot>
