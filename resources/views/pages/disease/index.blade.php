@@ -51,15 +51,24 @@ $(document).ready(() => {
 			},
 			{
 				data: 'determine',
-				name: 'determine'
+				name: 'determine',
+                render: function(data) {
+                    return data.length > 40 ? data.substr(0, 40) + '...' : data
+                }
 			},
 			{
 				data: 'suggestion',
-				name: 'suggestion'
+				name: 'suggestion',
+                render: function(data) {
+                    return data.length > 40 ? data.substr(0, 40) + '...' : data
+                }
 			},
 			{
 				data: 'image',
-				name: 'image'
+				name: 'image',
+                render: function(data){
+                    return `<img src="${data}" class="img-fluid"/>`
+                }
 			},
 			{
 				data: 'action',

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Disease;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class DiseaseController extends Controller
@@ -48,7 +49,12 @@ class DiseaseController extends Controller
             'image' => 'required',
         ]);
 
-        Disease::create($request->all());
+        if ($request->hasFile('image')){
+            $image = $request->file('image')->storePublicly('disease');
+            $imageUrl = Storage::url($image);
+        }
+
+        Disease::create(array_merge($request->all(), ['image' => $imageUrl]));
 
         return redirect()
             ->route('disease.index')
@@ -69,7 +75,7 @@ class DiseaseController extends Controller
             'image' => 'sometimes',
         ]);
 
-        $disease->update($request->all());
+        $disease->update(array_merge($request->all(), ['image' => $request->hasFile('image') ? Storage::url($request->file('image')->storePublicly('disease')) : $disease->image]));
         return redirect()
             ->route('disease.index')
             ->with('success', 'Disease updated Successfully');
