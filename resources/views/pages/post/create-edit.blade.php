@@ -2,7 +2,7 @@
 
 @section('tab-title', request()->routeIs('post.create') ? 'Create Post' : 'Update Post')
 
-@section('header')
+@section('header-customer')
 
 @endSection
 
@@ -20,8 +20,8 @@
 			<x-forms.put-method />
 			<x-forms.input required="" label="Name" name="name" :value="@$Post->name" />
 			<x-forms.input required="" label="Image" name="image" :value="@$Post->image" />
-			<x-forms.input required="" label="Nama" name="name" :value="@$post->name" />
 		</form>
 		<button form="form" class="btn btn-outline-primary btn-pill">Submit</button>
 	</x-slot>
 </x-cards.single>
+@endsection

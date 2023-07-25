@@ -2,7 +2,7 @@
 
 @section('tab-title', request()->routeIs('result.create') ? 'Create Result' : 'Update Result')
 
-@section('header')
+@section('header-customer')
 
 @endSection
 
@@ -27,3 +27,4 @@
 		<button form="form" class="btn btn-outline-primary btn-pill">Submit</button>
 	</x-slot>
 </x-cards.single>
+@endsection

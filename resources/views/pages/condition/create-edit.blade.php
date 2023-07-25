@@ -2,7 +2,7 @@
 
 @section('tab-title', request()->routeIs('condition.create') ? 'Create Condition' : 'Update Condition')
 
-@section('header')
+@section('header-customer')
 
 @endSection
 
@@ -19,9 +19,9 @@
 			@csrf
 			<x-forms.put-method />
 			<x-forms.input required="" label="Name" name="name" :value="@$Condition->name" />
-			<x-forms.input required="" label="Description" name="description" :value="@$Condition->description" />
-			<x-forms.input required="" label="Nama" name="name" :value="@$condition->name" />
+			<x-forms.input label="Description" name="description" :value="@$Condition->description" />
 		</form>
 		<button form="form" class="btn btn-outline-primary btn-pill">Submit</button>
 	</x-slot>
 </x-cards.single>
+@endsection

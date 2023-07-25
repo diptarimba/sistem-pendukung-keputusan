@@ -2,7 +2,7 @@
 
 @section('tab-title', request()->routeIs('knowledge.create') ? 'Create Knowledge' : 'Update Knowledge')
 
-@section('header')
+@section('header-customer')
 
 @endSection
 
@@ -22,8 +22,8 @@
 			<x-forms.input required="" label="Measure of Disbelief" name="measure_of_disbelief" :value="@$Knowledge->measure_of_disbelief" />
 			<x-forms.input required="" label="disease_id" name="disease_id" :value="@$Knowledge->disease_id" />
 			<x-forms.input required="" label="symtom_id" name="symtom_id" :value="@$Knowledge->symtom_id" />
-			<x-forms.input required="" label="Nama" name="name" :value="@$knowledge->name" />
 		</form>
 		<button form="form" class="btn btn-outline-primary btn-pill">Submit</button>
 	</x-slot>
 </x-cards.single>
+@endsection

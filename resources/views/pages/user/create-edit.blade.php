@@ -2,7 +2,7 @@
 
 @section('tab-title', 'User')
 
-@section('header-custom')
+@section('header-customer')
 
 @endsection
 
