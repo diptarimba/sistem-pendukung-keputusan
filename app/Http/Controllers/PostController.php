@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -14,7 +15,7 @@ class PostController extends Controller
             $post = Post::select();
             return datatables()->of($post)
                 ->addIndexColumn()
-                ->addColumn('action', function($query) {
+                ->addColumn('action', function ($query) {
                     return $this->getActionColumn($query);
                 })
                 ->rawColumns(['action'])
@@ -48,7 +49,14 @@ class PostController extends Controller
             'image' => 'required',
         ]);
 
-        Post::create($request->all());
+        if ($request->hasFile('image')) {
+            $image = $request->file('image')->storePublicly('post');
+            $imageUrl = Storage::url($image);
+        }
+
+        Post::create(array_merge($request->all(), [
+            'image' => $imageUrl
+        ]));
 
         return redirect()
             ->route('post.index')
@@ -69,7 +77,12 @@ class PostController extends Controller
             'image' => 'sometimes',
         ]);
 
-        $post->update($request->all());
+        $post->update(array_merge(
+            $request->all(),
+            [
+                'image' => $request->hasFile('image') ? Storage::url($request->file('image')->storePublicly('post')) : $post->image
+            ]
+        ));
         return redirect()
             ->route('post.index')
             ->with('success', 'Post updated Successfully');

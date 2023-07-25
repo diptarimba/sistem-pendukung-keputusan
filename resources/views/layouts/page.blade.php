@@ -153,6 +153,9 @@
     <script src="{{ asset('assets/js/jspdf.umd.min.js') }}"></script>
     <script src="{{ asset('assets/js/html2canvas.min.js') }}"></script>
 
+    <!-- Tiny Mce -->
+    <script src="https://cdn.tiny.cloud/1/4zhsd4hgiodlc0ea2h5oq2j5vhbdzde8mrjd39amli6t3nas/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
     <script>
         function delete_data(identify) {
             Swal.fire({
