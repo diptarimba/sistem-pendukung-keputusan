@@ -36,7 +36,11 @@
 $(document).ready(() => {
 	var table = $('.datatables-target-exec').DataTable({
 		...{
+        @if (Auth::user())
 		ajax: "{{ route('result.index') }}",
+        @else
+        ajax: "{{ route('guest.result.index') }}",
+        @endif
 		columns: [
 			{
 				data: 'DT_RowIndex',

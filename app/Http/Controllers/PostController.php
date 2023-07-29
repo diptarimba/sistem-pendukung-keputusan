@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -16,7 +17,9 @@ class PostController extends Controller
             return datatables()->of($post)
                 ->addIndexColumn()
                 ->addColumn('action', function ($query) {
-                    return $this->getActionColumn($query);
+                    if (Auth::guard('web')->check()){
+                        return $this->getActionColumn($query);
+                    }
                 })
                 ->rawColumns(['action'])
                 ->make(true);

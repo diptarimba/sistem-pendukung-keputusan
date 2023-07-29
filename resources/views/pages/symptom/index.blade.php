@@ -10,7 +10,9 @@
 <x-breadcrumbs category="Symptom" href="{{ route('symptom.index') }}" current="index" /><x-cards.fullpage>
 	<x-slot name="header">
 		<x-cards.header title="Symptom" />
+        @if (Auth::user())
 		<a class="btn btn-primary" href="{{ route('symptom.create') }}">Tambah Data</a>
+        @endif
 	</x-slot>
 	<x-slot name="body">
 		<div class="table-responsive">
@@ -33,7 +35,11 @@
 $(document).ready(() => {
 	var table = $('.datatables-target-exec').DataTable({
 		...{
+        @if (Auth::user())
 		ajax: "{{ route('symptom.index') }}",
+        @else
+        ajax: "{{ route('guest.symptom.index') }}",
+        @endif
 		columns: [
 			{
 				data: 'DT_RowIndex',

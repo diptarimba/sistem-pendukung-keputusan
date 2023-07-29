@@ -6,6 +6,7 @@ use App\Models\Disease;
 use App\Models\Knowledge;
 use App\Models\Symptom;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class KnowledgeController extends Controller
@@ -17,7 +18,9 @@ class KnowledgeController extends Controller
             return datatables()->of($knowledge)
                 ->addIndexColumn()
                 ->addColumn('action', function($query) {
-                    return $this->getActionColumn($query);
+                    if (Auth::guard('web')->check()){
+                        return $this->getActionColumn($query);
+                    }
                 })
                 ->rawColumns(['action'])
                 ->make(true);

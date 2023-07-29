@@ -19,7 +19,18 @@ use App\Http\Controllers\UserController;
 Route::get('/auth/login', [LoginController::class, 'index'])->name('login.index');
 Route::post('/auth/login', [LoginController::class, 'login'])->name('login.post');
 
-Route::group(['middleware' => ['auth:web']], function () {
+
+Route::group(['as' => 'guest.'],function () {
+    Route::get('/', [HomeController::class, 'index_guest'])->name('home.index');
+    Route::resource('symptom', [SymptomController::class, 'index']);
+    Route::resource('condition', [ConditionController::class, 'index']);
+    Route::resource('disease', [DiseaseController::class, 'index']);
+    Route::resource('knowledge', [KnowledgeController::class, 'index']);
+    Route::resource('result', [ResultController::class, 'index']);
+    Route::resource('post', [PostController::class, 'index']);
+});
+
+Route::group(['middleware' => ['auth:web'], 'prefix' => 'admin'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home.index');
     Route::get('/me', [ProfileController::class, 'edit'])->name('profile.index');
 

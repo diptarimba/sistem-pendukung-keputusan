@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Condition;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class ConditionController extends Controller
@@ -15,7 +16,9 @@ class ConditionController extends Controller
             return datatables()->of($condition)
                 ->addIndexColumn()
                 ->addColumn('action', function($query) {
-                    return $this->getActionColumn($query);
+                    if (Auth::guard('web')->check()){
+                        return $this->getActionColumn($query);
+                    }
                 })
                 ->rawColumns(['action'])
                 ->make(true);

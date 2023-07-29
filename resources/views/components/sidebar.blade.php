@@ -27,25 +27,45 @@
             <x-sidebar.HeaderLogo title="{{ config('app.name') }}" href="#"
                 src="{{ asset('assets/img/brand/light.svg') }}" />
             <x-sidebar.sparator />
-            <x-sidebar.Single icons="fa-solid fa-house-user" title="Home" href="{{ route('home.index') }}"
-                currentsite="{{ Request()->is('/') ? true : false }}" />
-            <x-sidebar.Single icons="fa-solid fa-thermometer-three-quarters fa-fw" title="Symptom" href="{{ route('symptom.index') }}"
-                currentsite="{{ Request()->is('symptom', 'symptom/*') ? true : false }}" />
-            <x-sidebar.Single icons="fa-solid fa-tasks fa-fw" title="Disease" href="{{ route('disease.index') }}"
-                currentsite="{{ Request()->is('disease', 'disease/*') ? true : false }}" />
-            <x-sidebar.Single icons="fa-solid fa-file-import fa-fw" title="Post" href="{{ route('post.index') }}"
-                currentsite="{{ Request()->is('post', 'post/*') ? true : false }}" />
-            <x-sidebar.Single icons="fa-solid fa-vial fa-fw" title="Result" href="{{ route('result.index') }}"
-                currentsite="{{ Request()->is('result', 'result/*') ? true : false }}" />
-            <x-sidebar.Single icons="fa-solid fa-cogs fa-fw" title="Condition"
-                href="{{ route('condition.index') }}"
-                currentsite="{{ Request()->is('condition', 'condition/*') ? true : false }}" />
-            <x-sidebar.Single icons="fa-solid fa-book-open fa-fw" title="Knowledge"
-                href="{{ route('knowledge.index') }}"
-                currentsite="{{ Request()->is('knowledge', 'knowledge/*') ? true : false }}" />
-            <x-sidebar.sparator />
-            <x-sidebar.Single icons="fa-solid fa-user fa-fw" title="User Admin" href="{{ route('user.index') }}"
-                currentsite="{{ Request()->is('user', 'user/*') ? true : false }}" />
+            @if (Auth::user())
+                <x-sidebar.Single icons="fa-solid fa-house-user" title="Home" href="{{ route('home.index') }}"
+                    currentsite="{{ Request()->is('/') ? true : false }}" />
+                <x-sidebar.Single icons="fa-solid fa-thermometer-three-quarters fa-fw" title="Symptom"
+                    href="{{ route('symptom.index') }}" currentsite="{{ Route::is('symptom.*') ? true : false }}" />
+                <x-sidebar.Single icons="fa-solid fa-tasks fa-fw" title="Disease" href="{{ route('disease.index') }}"
+                    currentsite="{{ Route::is('disease.*') ? true : false }}" />
+                <x-sidebar.Single icons="fa-solid fa-file-import fa-fw" title="Post" href="{{ route('post.index') }}"
+                    currentsite="{{ Route::is('post.*') ? true : false }}" />
+                <x-sidebar.Single icons="fa-solid fa-vial fa-fw" title="Result" href="{{ route('result.index') }}"
+                    currentsite="{{ Route::is('result.*') ? true : false }}" />
+                <x-sidebar.Single icons="fa-solid fa-cogs fa-fw" title="Condition"
+                    href="{{ route('condition.index') }}"
+                    currentsite="{{ Route::is('condition.*') ? true : false }}" />
+                <x-sidebar.Single icons="fa-solid fa-book-open fa-fw" title="Knowledge"
+                    href="{{ route('knowledge.index') }}"
+                    currentsite="{{ Route::is('knowledge.*') ? true : false }}" />
+                <x-sidebar.sparator />
+                <x-sidebar.Single icons="fa-solid fa-user fa-fw" title="User Admin" href="{{ route('user.index') }}"
+                    currentsite="{{ Route::is('user.*') ? true : false }}" />
+            @else
+                <x-sidebar.Single icons="fa-solid fa-house-user" title="Home" href="{{ route('guest.home.index') }}"
+                    currentsite="{{ Request()->is('/') ? true : false }}" />
+                <x-sidebar.Single icons="fa-solid fa-thermometer-three-quarters fa-fw" title="Symptom"
+                    href="{{ route('guest.symptom.index') }}" currentsite="{{ Route::is('guest.symptom.*') ? true : false }}" />
+                <x-sidebar.Single icons="fa-solid fa-tasks fa-fw" title="Disease" href="{{ route('guest.disease.index') }}"
+                    currentsite="{{ Route::is('guest.disease.*') ? true : false }}" />
+                <x-sidebar.Single icons="fa-solid fa-file-import fa-fw" title="Post" href="{{ route('guest.post.index') }}"
+                    currentsite="{{ Route::is('guest.post.*') ? true : false }}" />
+                <x-sidebar.Single icons="fa-solid fa-vial fa-fw" title="Result" href="{{ route('guest.result.index') }}"
+                    currentsite="{{ Route::is('guest.result.*') ? true : false }}" />
+                <x-sidebar.Single icons="fa-solid fa-cogs fa-fw" title="Condition"
+                    href="{{ route('guest.condition.index') }}"
+                    currentsite="{{ Route::is('guest.condition.*') ? true : false }}" />
+                <x-sidebar.Single icons="fa-solid fa-book-open fa-fw" title="Knowledge"
+                    href="{{ route('guest.knowledge.index') }}"
+                    currentsite="{{ Route::is('guest.knowledge.*') ? true : false }}" />
+            @endif
+
         </ul>
     </div>
 </nav>
