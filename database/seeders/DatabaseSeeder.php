@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(DiseaseSeeder::class);
         $this->call(SymptomSeeder::class);
         $this->call(ConditionSeeder::class);
+        $this->call(PostSeeder::class);
         // \App\Models\User::factory(10)->create();
     }
 }
