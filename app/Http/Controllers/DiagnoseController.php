@@ -20,33 +20,35 @@ class DiagnoseController extends Controller
     public function execDiagnose(Request $request)
     {
         // Get All Disease
-        $disease = Disease::get();
+        $disease = Disease::with('knowledge')->get();
         // For Each Disease
         $resDisease = [];
         foreach ($disease as $eachDisease) {
             $cf = 0;
             $cflama = 0;
-            // Load Knowledge
-            $disease->load('knowledge');
+
+            $symptomRequest = array_filter($request->symptom, function ($value) {
+                return $value[0] !== null && $value[1] !== null;
+            });
 
             // Foreach Knowledge
             foreach ($eachDisease->knowledge as $eachKnowledge) {
-                foreach ($request->symptom as $eachSymptom => $eachCondition) {
+                foreach ($symptomRequest as $eachSymptom => $eachCondition) {
                     if ($eachKnowledge->symptom_id == $eachSymptom) {
-                        $cf = ($eachKnowledge->measure_of_belief - $eachKnowledge->measure_of_disbelief) * $eachCondition;
+                        $cf = ($eachKnowledge->measure_of_belief - $eachKnowledge->measure_of_disbelief) * $eachCondition[0];
                         if (($cf >= 0) && ($cf * $cflama >= 0)) {
                             $cflama = $cflama + ($cf * (1 - $cflama));
-                          }
-                          if ($cf * $cflama < 0) {
+                        }
+                        if ($cf * $cflama < 0) {
                             $cflama = ($cflama + $cf) / (1 - Min(abs($cflama), abs($cf)));
-                          }
-                          if (($cf < 0) && ($cf * $cflama >= 0)) {
+                        }
+                        if (($cf < 0) && ($cf * $cflama >= 0)) {
                             $cflama = $cflama + ($cf * (1 + $cflama));
-                          }
+                        }
                     }
                 }
             }
-            if ($cf > 0){
+            if ($cf > 0) {
                 array_push($resDisease, [
                     $eachDisease->id => number_format($cflama, 4)
                 ]);
@@ -55,21 +57,20 @@ class DiagnoseController extends Controller
 
         arsort($resDisease);
 
-        foreach($resDisease as $eachRes){
-            foreach($eachRes as $keyRes => $valueRes){
-                $result = Result::create(['value' => $valueRes]);
-                break 2;
+        $first = true;
+
+        foreach ($resDisease as $eachRes) {
+            foreach ($eachRes as $eachKeyResDisease => $eachValueResDisease) {
+                if ($first) {
+                    $result = Result::create(['value' => $eachValueResDisease]);
+                    $first = false;
+                }
+                $result->res_disease()->create(['disease_id' => $eachKeyResDisease, 'value' => $eachValueResDisease]);
             }
         }
 
-        // $result = Result::create(['value' => $resDisease[0]]);
-
-        foreach($resDisease as $eachKeyResDisease => $eachValueResDisease){
-            $result->res_disease()->create(['disease_id' => $eachKeyResDisease]);
-        }
-
-        foreach($request->all() as $eachKeySymptom => $eachValueSymptom){
-            $result->res_symptom()->create(['symptom_id' => $eachKeySymptom]);
+        foreach ($symptomRequest as $eachKeySymptom => $eachValueSymptom) {
+            $result->res_symptom()->create(['symptom_id' => $eachKeySymptom, 'condition_id' => $eachValueSymptom[1]]);
         }
 
         return redirect()->route('guest.diagnose.create')->with('success', 'Create Diagnose Successfully');

@@ -17,10 +17,7 @@
 			<table class="table table-centered table-nowrap mb-0 rounded datatables-target-exec" style="width: 100%">
 				<thead>
 					<th>No</th>
-					<th>Date</th>
-					<th>Disease</th>
-					<th>Symptom</th>
-					<th>Value</th>
+					<th>Highest Value</th>
 					<th>Action</th>
 				</thead>
 				<tbody>
@@ -48,18 +45,6 @@ $(document).ready(() => {
 				sortable: false,
 				orderable: false,
 				searchable: false
-			},
-			{
-				data: 'date',
-				name: 'date'
-			},
-			{
-				data: 'disease',
-				name: 'disease'
-			},
-			{
-				data: 'symptom',
-				name: 'symptom'
 			},
 			{
 				data: 'value',

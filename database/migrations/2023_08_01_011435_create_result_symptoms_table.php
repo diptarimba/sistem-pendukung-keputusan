@@ -17,6 +17,7 @@ class CreateResultSymptomsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('result_id');
             $table->unsignedBigInteger('symptom_id');
+            $table->unsignedBigInteger('condition_id');
             $table->timestamps();
         });
     }

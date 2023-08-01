@@ -23,7 +23,9 @@
 					<th>Determine</th>
 					<th>Suggestion</th>
 					<th>Image</th>
+                    @if (Auth::guard('web')->check())
 					<th>Action</th>
+                    @endif
 				</thead>
 				<tbody>
 				</tbody>
@@ -76,12 +78,14 @@ $(document).ready(() => {
                     return `<img src="${data}" style="max-height: 35px;"class="img-fluid"/>`
                 }
 			},
+            @if (Auth::guard('web')->check())
 			{
 				data: 'action',
 				name: 'action',
 				orderable: false,
 				searchable: false
 			},
+            @endif
 		]
 	}, ...optionDatatables});
 })

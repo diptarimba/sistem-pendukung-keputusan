@@ -31,8 +31,8 @@ Route::group(['as' => 'guest.'],function () {
     Route::resource('condition', ConditionController::class)->only(['index']);
     Route::resource('disease', DiseaseController::class)->only(['index']);
     Route::resource('knowledge', KnowledgeController::class)->only(['index']);
-    Route::resource('result', ResultController::class)->only(['index']);
-    Route::resource('post', PostController::class)->only(['index']);
+    Route::resource('result', ResultController::class)->only(['index', 'edit']);
+    Route::resource('post', PostController::class)->only(['index', 'edit']);
 });
 
 Route::group(['middleware' => ['auth:web'], 'prefix' => 'admin'], function () {

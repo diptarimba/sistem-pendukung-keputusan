@@ -43,7 +43,7 @@
         <x-slot name="head">
             {{-- <x-sidebar.ProfileInfo src="{{ Auth::user()->avatar ?? '' }}" name="{!! Auth::user()->name ?? '' !!}" nameButton="Sign Out"
                 linkButton="{{ route('logout.index') }}" /> --}}
-            <x-sidebar.ProfileInfo src="{{ Auth::user()->avatar ?? '' }}" name="{!! '' !!}" nameButton="Sign Out"
+            <x-sidebar.ProfileInfo src="{{ Auth::user()->avatar ?? '/storage/placeholder/avatar/default-profile.png' }}" auth="{{Auth::guard('web')->check()}}" name="{!! '' !!}" nameButton="Sign Out"
                 linkButton="{{ route('logout.index') }}" />
         </x-slot>
     @endcomponent

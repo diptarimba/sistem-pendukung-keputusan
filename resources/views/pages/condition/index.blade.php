@@ -22,7 +22,9 @@
 					<th>Name</th>
 					<th>Description</th>
 					<th>Value</th>
+                    @if (Auth::guard('web')->check())
 					<th>Action</th>
+                    @endif
 				</thead>
 				<tbody>
 				</tbody>
@@ -62,12 +64,14 @@ $(document).ready(() => {
 				data: 'value',
 				name: 'value'
 			},
+            @if (Auth::guard('web')->check())
 			{
 				data: 'action',
 				name: 'action',
 				orderable: false,
 				searchable: false
 			},
+            @endif
 		]
 	}, ...optionDatatables});
 })

@@ -19,6 +19,8 @@ class PostController extends Controller
                 ->addColumn('action', function ($query) {
                     if (Auth::guard('web')->check()){
                         return $this->getActionColumn($query);
+                    } else {
+                        return $this->getGuestActionColumn($query);
                     }
                 })
                 ->rawColumns(['action'])
@@ -36,6 +38,12 @@ class PostController extends Controller
         $buttonAction = '<a href="' . $editBtn . '" class="btn mx-1 my-1 btn-sm btn-success">Edit</a>';
         $buttonAction .= '<button type="button" onclick="delete_data(\'form' . $ident . '\')"class="mx-1 my-1 btn btn-sm btn-danger">Delete</button>' . '<form id="form' . $ident . '" action="' . $deleteBtn . '" method="post"> <input type="hidden" name="_token" value="' . csrf_token() . '" /> <input type="hidden" name="_method" value="DELETE"> </form>';
         return $buttonAction;
+    }
+
+    public function getGuestActionColumn($data)
+    {
+        $editBtn = route('guest.post.edit', $data->id);
+        return '<button type="button" onclick="fetchDataAndPopulateModal(\'' . $editBtn . '\')" class="btn mx-1 my-1 btn-sm btn-secondary read-post">View Post</button>';
     }
 
     public function create()
@@ -66,8 +74,14 @@ class PostController extends Controller
             ->with('success', 'Post created successfully');
     }
 
-    public function edit(Post $post)
+    public function edit(Request $request, Post $post)
     {
+
+        if($request->ajax())
+        {
+            return response()->json(['data' => $post->toArray()], 200);
+        }
+
         return view('pages.post.create-edit', compact('post'));
     }
 

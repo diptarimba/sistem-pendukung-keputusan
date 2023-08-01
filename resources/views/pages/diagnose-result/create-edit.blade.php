@@ -17,16 +17,17 @@
             @csrf
             <div class="row">
                 @foreach ($symptom as $keySymp => $eachSymp)
-                    <div class="mb-3 d-flex justify-content-between">
-                        <label for="selectSymptom" class="flex-fill col-form-label">{{ $eachSymp }}</label>
-                        <div class="flex-fill">
-                            <select class="form-select" id="selectSymptom" name="symptom[{{ $keySymp }}]"
-                                aria-label="Default select example">
+                    <div class="mb-3 row">
+                        <label for="selectSymptom" class="col-6 col-form-label">{{ $eachSymp }}</label>
+                        <div class="col-6">
+                            <select class="form-select" id="selectSymptom_{{ $keySymp }}" name="symptom[{{ $keySymp }}][0]"
+                                aria-label="Default select example" onchange="updateHiddenInput(this)">
                                 <option value="" selected>Open this select menu</option>
                                 @foreach ($condition as $eachCon )
-                                    <option value="{{ $eachCon->value }}">{{ $eachCon->name }}</option>
+                                    <option value="{{$eachCon->value}}" data-id="{{ $eachCon->id }}">{{ $eachCon->name }}</option>
                                 @endforeach
                             </select>
+                            <input type="hidden" id="hiddenSymptom_{{ $keySymp }}" name="symptom[{{ $keySymp }}][1]" value="">
                         </div>
                     </div>
                 @endforeach
@@ -37,4 +38,13 @@
     </x-cards.single>
 @endsection
 @section('footer-custom')
+<script>
+    function updateHiddenInput(selectElement) {
+        const hiddenInputId = 'hiddenSymptom_' + selectElement.name.match(/\d+/)[0];
+        const selectedOption = selectElement.options[selectElement.selectedIndex];
+        const selectedId = selectedOption.getAttribute('data-id');
+        const hiddenInput = document.getElementById(hiddenInputId);
+        hiddenInput.value = selectedId;
+    }
+</script>
 @endsection

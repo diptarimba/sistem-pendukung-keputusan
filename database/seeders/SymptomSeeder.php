@@ -14,9 +14,54 @@ class SymptomSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 1; $i <= 10; $i++) {
+        $data =[
+            "Nafsu makan berkurang",
+            "Nafas sesak / megap-megap",
+            "Nafas ngorok basah",
+            "Bersin-bersin",
+            "Batuk",
+            "Kerabang telur pucat",
+            "Bulu kusam dan berkerut",
+            "Diare",
+            "Produksi telur menurun",
+            "Kedinginan",
+            "Tampak lesu",
+            "Mencret kehijau-hijauan",
+            "Mencret keputih-putihan",
+            "Muka pucat",
+            "Nampak membiru",
+            "Pembengkakan pial",
+            "Jengger pucat",
+            "Kaki dan sayap lumpuh",
+            "Keluar cairan dari mata dan hidung",
+            "Kepala bengkak",
+            "Kepala terputar",
+            "Pembengkakan dari sinus dan mata",
+            "Perut membesar",
+            "Sayap menggantung",
+            "Terdapat kotoran putih menempel disekitar anus",
+            "Mati secara mendadak",
+            "Kerabang telur kasar",
+            "Putih Telur Encer",
+            "Kotoran kuning kehijauan",
+            "Pembengkakan daerah fasial dan sekitar mata",
+            "Kotoran atau feses berdarah",
+            "Bergerombol di sudut kandang",
+            "Mematuk daerah kloaka",
+            "Telur lebih kecil",
+            "Kelumpuhan pada tembolok",
+            "Bernafas dengan mulut sambil menjulurkan leher",
+            "Batuk berdarah",
+            "Tidur paruhnya diletakkan dilantai",
+            "Duduk dengan sikap membungkuk",
+            "Kelihatan mengantuk dengan bulu berdiri",
+            "Badan kurus",
+            "Terdapat lendir bercampur darah pada rongga mulut",
+            "Kaki pincang"
+        ];
+        foreach($data as $each){
             Symptom::create([
-                'name' => "Symptom $i",
+                'name' => $each,
             ]);
         }
     }

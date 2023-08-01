@@ -28,9 +28,11 @@ class KnowledgeSeeder extends Seeder
         $disease = Disease::inRandomOrder()->pluck('id');
         $symptom = Symptom::inRandomOrder()->pluck('id');
         for($x = 0; $x < 100; $x++){
+            $mb = (int) rand(0,1 ) . '.' . rand(1, 9);
+            $md = (int) rand(0,1 ) . '.' . rand(1, 9);
             Knowledge::create([
-                'measure_of_belief' => $this->faker->randomFloat(),
-                'measure_of_disbelief' => $this->faker->randomFloat(),
+                'measure_of_belief' => $mb,
+                'measure_of_disbelief' => $md,
                 'disease_id' => $disease->random(),
                 'symptom_id' => $symptom->random(),
             ]);

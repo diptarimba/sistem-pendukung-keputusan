@@ -11,6 +11,7 @@ class ResultDisease extends Model
 
     protected $fillable = [
         'result_id',
+        'value',
         'disease_id'
     ];
 

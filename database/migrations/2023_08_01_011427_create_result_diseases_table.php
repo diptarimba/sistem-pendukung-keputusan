@@ -17,6 +17,7 @@ class CreateResultDiseasesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('result_id');
             $table->unsignedBigInteger('disease_id');
+            $table->decimal('value', 11, 1);
             $table->timestamps();
         });
     }

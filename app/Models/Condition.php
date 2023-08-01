@@ -12,4 +12,8 @@ class Condition extends Model
         'value'
     ];
 
+    public function res_symptom(){
+        return $this->hasMany(ResultSymptom::class, 'condition_id', 'id');
+    }
+
 }

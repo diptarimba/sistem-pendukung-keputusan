@@ -11,7 +11,8 @@ class ResultSymptom extends Model
 
     protected $fillable = [
         'result_id',
-        'symptom_id'
+        'symptom_id',
+        'condition_id'
     ];
 
     public function result()
@@ -22,5 +23,10 @@ class ResultSymptom extends Model
     public function symptom()
     {
         return $this->belongsTo(Symptom::class, 'symptom_id', 'id');
+    }
+
+    public function condition()
+    {
+        return $this->belongsTo(Condition::class, 'condition_id', 'id');
     }
 }
