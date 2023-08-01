@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\SymptomController;
 use App\Http\Controllers\ConditionController;
+use App\Http\Controllers\DiagnoseController;
 use App\Http\Controllers\DiseaseController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KnowledgeController;
@@ -22,12 +23,16 @@ Route::post('/auth/login', [LoginController::class, 'login'])->name('login.post'
 
 Route::group(['as' => 'guest.'],function () {
     Route::get('/', [HomeController::class, 'index_guest'])->name('home.index');
-    Route::resource('symptom', [SymptomController::class, 'index']);
-    Route::resource('condition', [ConditionController::class, 'index']);
-    Route::resource('disease', [DiseaseController::class, 'index']);
-    Route::resource('knowledge', [KnowledgeController::class, 'index']);
-    Route::resource('result', [ResultController::class, 'index']);
-    Route::resource('post', [PostController::class, 'index']);
+
+    Route::get('/diagnose', [DiagnoseController::class, 'create'])->name('diagnose.create');
+    Route::post('/diagnose', [DiagnoseController::class, 'execDiagnose'])->name('diagnose.post');
+
+    Route::resource('symptom', SymptomController::class)->only(['index']);
+    Route::resource('condition', ConditionController::class)->only(['index']);
+    Route::resource('disease', DiseaseController::class)->only(['index']);
+    Route::resource('knowledge', KnowledgeController::class)->only(['index']);
+    Route::resource('result', ResultController::class)->only(['index']);
+    Route::resource('post', PostController::class)->only(['index']);
 });
 
 Route::group(['middleware' => ['auth:web'], 'prefix' => 'admin'], function () {

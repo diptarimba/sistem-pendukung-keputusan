@@ -21,6 +21,7 @@
 					<th>No</th>
 					<th>Name</th>
 					<th>Description</th>
+					<th>Value</th>
 					<th>Action</th>
 				</thead>
 				<tbody>
@@ -56,6 +57,10 @@ $(document).ready(() => {
 			{
 				data: 'description',
 				name: 'description'
+			},
+            {
+				data: 'value',
+				name: 'value'
 			},
 			{
 				data: 'action',

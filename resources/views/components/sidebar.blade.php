@@ -51,12 +51,16 @@
                 <x-sidebar.Single icons="fa-solid fa-house-user" title="Home" href="{{ route('guest.home.index') }}"
                     currentsite="{{ Request()->is('/') ? true : false }}" />
                 <x-sidebar.Single icons="fa-solid fa-thermometer-three-quarters fa-fw" title="Symptom"
-                    href="{{ route('guest.symptom.index') }}" currentsite="{{ Route::is('guest.symptom.*') ? true : false }}" />
-                <x-sidebar.Single icons="fa-solid fa-tasks fa-fw" title="Disease" href="{{ route('guest.disease.index') }}"
+                    href="{{ route('guest.symptom.index') }}"
+                    currentsite="{{ Route::is('guest.symptom.*') ? true : false }}" />
+                <x-sidebar.Single icons="fa-solid fa-tasks fa-fw" title="Disease"
+                    href="{{ route('guest.disease.index') }}"
                     currentsite="{{ Route::is('guest.disease.*') ? true : false }}" />
-                <x-sidebar.Single icons="fa-solid fa-file-import fa-fw" title="Post" href="{{ route('guest.post.index') }}"
+                <x-sidebar.Single icons="fa-solid fa-file-import fa-fw" title="Post"
+                    href="{{ route('guest.post.index') }}"
                     currentsite="{{ Route::is('guest.post.*') ? true : false }}" />
-                <x-sidebar.Single icons="fa-solid fa-vial fa-fw" title="Result" href="{{ route('guest.result.index') }}"
+                <x-sidebar.Single icons="fa-solid fa-vial fa-fw" title="Result"
+                    href="{{ route('guest.result.index') }}"
                     currentsite="{{ Route::is('guest.result.*') ? true : false }}" />
                 <x-sidebar.Single icons="fa-solid fa-cogs fa-fw" title="Condition"
                     href="{{ route('guest.condition.index') }}"
@@ -64,6 +68,10 @@
                 <x-sidebar.Single icons="fa-solid fa-book-open fa-fw" title="Knowledge"
                     href="{{ route('guest.knowledge.index') }}"
                     currentsite="{{ Route::is('guest.knowledge.*') ? true : false }}" />
+                <x-sidebar.sparator />
+                <x-sidebar.Single icons="fa-solid fa-balance-scale fa-fw" title="Research"
+                    href="{{ route('guest.diagnose.create') }}"
+                    currentsite="{{ Route::is('guest.diagnose.create') ? true : false }}" />
             @endif
 
         </ul>

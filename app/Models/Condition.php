@@ -9,6 +9,7 @@ class Condition extends Model
     protected $fillable = [
         'name',
         'description',
+        'value'
     ];
 
 }

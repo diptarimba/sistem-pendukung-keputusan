@@ -12,6 +12,7 @@ class CreateConditionTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
+            $table->double('value', 11, 1);
             $table->timestamps();
         });
     }

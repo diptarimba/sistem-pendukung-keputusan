@@ -14,11 +14,54 @@ class ConditionSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 1; $i <= 10; $i++) {
-            Condition::create([
-                'name' => "Condition $i",
-                'description' => "Description for Condition $i"
-            ]);
-        }
+        $data = [
+            [
+                "name" => "Pasti Ya",
+                "description" => "",
+                "value" => 1
+            ],
+            [
+                "name" => "Hampir pasti ya",
+                "description" => "",
+                "value" => 0.8
+            ],
+            [
+                "name" => "Kemungkinan besar ya",
+                "description" => "",
+                "value" => 0.6
+            ],
+            [
+                "name" => "Mungkin ya",
+                "description" => "",
+                "value" => 0.4
+            ],
+            [
+                "name" => "Tidak tahu",
+                "description" => "",
+                "value" => -0.2
+            ],
+            [
+                "name" => "Mungkin Tidak",
+                "description" => "",
+                "value" => -0.4
+            ],
+            [
+                "name" => "Kemungkinan Besar Tidak",
+                "description" => "",
+                "value" => -0.6
+            ],
+            [
+                "name" => "Hampir pasti tidak",
+                "description" => "",
+                "value" => -0.8
+            ],
+            [
+                "name" => "Pasti Tidak",
+                "description" => "",
+                "value" => -1
+            ],
+        ];
+
+        Condition::insert($data);
     }
 }

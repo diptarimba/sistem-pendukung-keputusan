@@ -19,7 +19,8 @@
 			@csrf
 			<x-forms.put-method />
 			<x-forms.input required="" label="Name" name="name" :value="@$condition->name" />
-			<x-forms.input required="" label="Description" name="description" :value="@$condition->description" />
+                <x-forms.input required="" label="Description" name="description" :value="@$condition->description" />
+			<x-forms.input required="" label="Value" name="value" :value="@$condition->value" />
 		</form>
 		<button form="form" class="btn btn-outline-primary btn-pill">Submit</button>
 	</x-slot>

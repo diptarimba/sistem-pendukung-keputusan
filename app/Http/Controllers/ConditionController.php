@@ -47,6 +47,7 @@ class ConditionController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required',
+            'value' => 'required'
         ]);
 
         Condition::create($request->all());
@@ -66,6 +67,7 @@ class ConditionController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required',
+            'value' => 'required'
         ]);
 
         $condition->update($request->all());
