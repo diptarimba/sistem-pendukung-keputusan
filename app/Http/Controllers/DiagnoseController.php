@@ -73,6 +73,6 @@ class DiagnoseController extends Controller
             $result->res_symptom()->create(['symptom_id' => $eachKeySymptom, 'condition_id' => $eachValueSymptom[1]]);
         }
 
-        return redirect()->route('guest.diagnose.create')->with('success', 'Create Diagnose Successfully');
+        return redirect()->route('guest.result.edit', $result->id)->with('success', 'Create Diagnose Successfully');
     }
 }

@@ -15,7 +15,7 @@
                     Disease diagnosis result
                 </div>
                 <div class="card-body">
-                    $name / {{ $value }} ({{ $percentage }}%)
+                    {{$name}} / {{ $value }} ({{ $percentage }}%)
                 </div>
             </div>
         </div>
