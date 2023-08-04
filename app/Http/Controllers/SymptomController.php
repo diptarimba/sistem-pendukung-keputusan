@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Symptom;
+use App\Models\SymptomCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -12,7 +13,7 @@ class SymptomController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $symptom = Symptom::select();
+            $symptom = Symptom::with('symptom_category')->select();
             return datatables()->of($symptom)
                 ->addIndexColumn()
                 ->addColumn('action', function($query) {
@@ -39,13 +40,15 @@ class SymptomController extends Controller
 
     public function create()
     {
-        return view('pages.symptom.create-edit');
+        $category = SymptomCategory::get()->pluck('name', 'id');
+        return view('pages.symptom.create-edit', compact('category'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required',
+            'category_id' => 'required'
         ]);
 
         Symptom::create($request->all());
@@ -57,13 +60,15 @@ class SymptomController extends Controller
 
     public function edit(Symptom $symptom)
     {
-        return view('pages.symptom.create-edit', compact('symptom'));
+        $category = SymptomCategory::get()->pluck('name', 'id');
+        return view('pages.symptom.create-edit', compact('symptom', 'category'));
     }
 
     public function update(Request $request, Symptom $symptom)
     {
         $request->validate([
             'name' => 'required',
+            'category_id' => 'required'
         ]);
 
         $symptom->update($request->all());

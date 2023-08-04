@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Symptom;
+use App\Models\SymptomCategory;
 use Illuminate\Database\Seeder;
 
 class SymptomSeeder extends Seeder
@@ -14,6 +15,14 @@ class SymptomSeeder extends Seeder
      */
     public function run()
     {
+        $symptomCategory = [
+            [
+                "name" => 'Kelelahan'
+            ],[
+                "name" => 'Obesitas'
+            ]
+        ];
+        SymptomCategory::insert($symptomCategory);
         $data =[
             "Nafsu makan berkurang",
             "Nafas sesak / megap-megap",
@@ -40,6 +49,15 @@ class SymptomSeeder extends Seeder
             "Perut membesar",
             "Sayap menggantung",
             "Terdapat kotoran putih menempel disekitar anus",
+        ];
+        foreach($data as $each){
+            Symptom::create([
+                'name' => $each,
+                'category_id' => 1
+            ]);
+        }
+
+        $data =[
             "Mati secara mendadak",
             "Kerabang telur kasar",
             "Putih Telur Encer",
@@ -62,6 +80,7 @@ class SymptomSeeder extends Seeder
         foreach($data as $each){
             Symptom::create([
                 'name' => $each,
+                'category_id' => 2
             ]);
         }
     }

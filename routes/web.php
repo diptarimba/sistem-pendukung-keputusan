@@ -12,7 +12,9 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ResultController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SymptomCategoryController;
 use App\Http\Controllers\UserController;
+use App\Models\SymptomCategory;
 
 // Delimiter //
 // Generated routes
@@ -28,6 +30,7 @@ Route::group(['as' => 'guest.'],function () {
     Route::post('/diagnose', [DiagnoseController::class, 'execDiagnose'])->name('diagnose.post');
 
     Route::resource('symptom', SymptomController::class)->only(['index']);
+    Route::resource('category', SymptomCategoryController::class)->only(['index']);
     Route::resource('condition', ConditionController::class)->only(['index']);
     Route::resource('disease', DiseaseController::class)->only(['index']);
     Route::resource('knowledge', KnowledgeController::class)->only(['index']);
@@ -41,6 +44,7 @@ Route::group(['middleware' => ['auth:web'], 'prefix' => 'admin'], function () {
 
     Route::resource('user', UserController::class);
     Route::resource('symptom', SymptomController::class);
+    Route::resource('category', SymptomController::class);
     Route::resource('condition', ConditionController::class);
     Route::resource('disease', DiseaseController::class);
     Route::resource('knowledge', KnowledgeController::class);

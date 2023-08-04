@@ -1,17 +1,17 @@
 @extends('layouts.page')
 
-@section('tab-title', 'Symptom')
+@section('tab-title', 'Category')
 
 @section('header-custom')
 
 @endSection
 
 @section('content')
-<x-breadcrumbs category="Symptom" href="{{ route('symptom.index') }}" current="index" /><x-cards.fullpage>
+<x-breadcrumbs category="Category" href="{{ route('category.index') }}" current="index" /><x-cards.fullpage>
 	<x-slot name="header">
-		<x-cards.header title="Symptom" />
+		<x-cards.header title="Category" />
         @if (Auth::user())
-		<a class="btn btn-primary" href="{{ route('symptom.create') }}">Tambah Data</a>
+		<a class="btn btn-primary" href="{{ route('category.create') }}">Tambah Data</a>
         @endif
 	</x-slot>
 	<x-slot name="body">
@@ -20,7 +20,6 @@
 				<thead>
 					<th>No</th>
 					<th>Name</th>
-                    <th>Category</th>
                     @if (Auth::guard('web')->check())
 					<th>Action</th>
                     @endif
@@ -39,9 +38,9 @@ $(document).ready(() => {
 	var table = $('.datatables-target-exec').DataTable({
 		...{
         @if (Auth::user())
-		ajax: "{{ route('symptom.index') }}",
+		ajax: "{{ route('category.index') }}",
         @else
-        ajax: "{{ route('guest.symptom.index') }}",
+        ajax: "{{ route('guest.category.index') }}",
         @endif
 		columns: [
 			{
@@ -54,10 +53,6 @@ $(document).ready(() => {
 			{
 				data: 'name',
 				name: 'name'
-			},
-            {
-				data: 'symptom_category.name',
-				name: 'symptom_category.name'
 			},
             @if (Auth::guard('web')->check())
 			{

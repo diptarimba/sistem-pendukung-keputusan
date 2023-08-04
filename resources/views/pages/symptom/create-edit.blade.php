@@ -19,6 +19,7 @@
                 @csrf
                 <x-forms.put-method />
                 <x-forms.input required="" label="Name" name="name" :value="@$symptom->name" />
+                <x-forms.select label="Symtpom Category" name="category_id" :items="$category" :value="@$symptom->category_id" />
             </form>
             <button form="form" class="btn btn-outline-primary btn-pill">Submit</button>
         </x-slot>

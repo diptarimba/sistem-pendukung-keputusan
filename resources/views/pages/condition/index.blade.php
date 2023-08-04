@@ -56,7 +56,7 @@ $(document).ready(() => {
 				data: 'name',
 				name: 'name'
 			},
-			{
+            {
 				data: 'description',
 				name: 'description'
 			},

@@ -9,7 +9,8 @@ class Condition extends Model
     protected $fillable = [
         'name',
         'description',
-        'value'
+        'value',
+        'category_id'
     ];
 
     public function res_symptom(){

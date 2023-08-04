@@ -12,7 +12,14 @@ class DiagnoseController extends Controller
 {
     public function create()
     {
-        $symptom = Symptom::get()->pluck('name', 'id');
+        $symptom = Symptom::join('symptom_categories', 'symptoms.category_id', '=', 'symptom_categories.id')
+            ->select('symptoms.name', 'symptoms.id', 'symptom_categories.name as category_name')
+            ->get()
+            ->groupBy('category_name')
+            ->map(function ($query) {
+                return $query->pluck('name', 'id');
+            });
+        // dd($symptom);
         $condition = Condition::get();
         return view('pages.diagnose-result.create-edit', compact('symptom', 'condition'));
     }

@@ -8,6 +8,8 @@
 
 @section('content')
     <x-breadcrumbs category="Result" href="{{ route('result.index') }}" current="index" />
+    <button id="print-button" class="btn btn-secondary">Cetak Data</button>
+    <div id="content-to-print">
     <div class="row">
         <div class="col-12 col-lg-6 my-2">
             <div class="card border-0 shadow">
@@ -80,6 +82,7 @@
                 </x-slot>
             </x-cards.fullpage></div>
     </div>
+    </div>
 
 
     <x-addon />
@@ -135,5 +138,12 @@
                 ...optionDatatables
             });
         })
+        document.getElementById("print-button").addEventListener("click", function() {
+            var contentToPrint = document.getElementById("content-to-print").innerHTML;
+            var originalBody = document.body.innerHTML;
+            document.body.innerHTML = contentToPrint;
+            window.print();
+            document.body.innerHTML = originalBody;
+        });
     </script>
 @endsection
