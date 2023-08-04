@@ -14,13 +14,27 @@ class DiseaseSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 1; $i <= 10; $i++) {
-            Disease::create([
-                'name' => "Disease $i",
-                'determine' => "Determine for Disease $i",
-                'suggestion' => "Suggestion for Disease $i",
-                'image' => '/storage/placeholder/avatar/default-profile.png'
-            ]);
-        }
+        // for ($i = 1; $i <= 10; $i++) {
+        //     Disease::create([
+        //         'name' => "Disease $i",
+        //         'determine' => "Determine for Disease $i",
+        //         'suggestion' => "Suggestion for Disease $i",
+        //         'image' => '/storage/placeholder/avatar/default-profile.png'
+        //     ]);
+        // }
+
+        Disease::create([
+            'name' => "Layak Inseminasi",
+            'determine' => "Layak Inseminasi",
+            'suggestion' => "Layak Inseminasi",
+            'image' => '/storage/placeholder/avatar/default-profile.png'
+        ]);
+
+        Disease::create([
+            'name' => "Tidak Layak Inseminasi",
+            'determine' => "Tidak Layak Inseminasi",
+            'suggestion' => "Tidak Layak Inseminasi",
+            'image' => '/storage/placeholder/avatar/default-profile.png'
+        ]);
     }
 }
