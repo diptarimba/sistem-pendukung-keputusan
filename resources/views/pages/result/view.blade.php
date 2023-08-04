@@ -8,38 +8,24 @@
 
 @section('content')
     <x-breadcrumbs category="Result" href="{{ route('result.index') }}" current="index" />
-    <button id="print-button" class="btn btn-secondary">Cetak Data</button>
+    <button id="print-button" class="btn btn-secondary mb-2">Cetak Data</button>
     <div id="content-to-print">
-    <div class="row">
-        <div class="col-12 col-lg-6 my-2">
-            <div class="card border-0 shadow">
-                <div class="card-header border-gray-100 d-flex justify-content-between align-items-center">
-                    Disease diagnosis result
+        <div class="col-12 mb-3">
+            <div class="card">
+              <div class="card-body d-flex flex-wrap">
+                <!-- Image on the left -->
+                <div class="col-4 col-md-1 flex-fill">
+                    <img src="{{ $image }}" class="rounded" alt="Image">
                 </div>
-                <div class="card-body">
-                    {{$name}} / {{ $value }} ({{ $percentage }}%)
+                <div class="col-auto col-md-9 ms-2 flex-fill">
+                  <!-- Title and description on the right -->
+                  <h5 class="card-title">{{__('Disease diagnosis result')}}</h5>
+                  <p class="card-text">{{$name}} / {{ $value }} ({{ $percentage }}%)</p>
+                  <p class="card-text">{{ $determine }}</p>
                 </div>
+              </div>
             </div>
-        </div>
-        <div class="col-lg-6 col-12 my-2">
-            <div class="card border-0 shadow">
-                <div class="row">
-                    <div class="col-lg-4 col-12 d-flex align-items-center justify-content-end">
-                        <!-- Add 'd-flex align-items-center' here -->
-                        <img src="{{ $image }}" class="img-fluid pt-2 rounded">
-                    </div>
-                    <div class="col">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $name }}</h5>
-                            <p class="card-text">{{ $determine }}</p>
-                            {{-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
+          </div>
     <div class="row">
         <div class="col-md-6 col-12"> <x-cards.fullpage>
                 <x-slot name="header">
