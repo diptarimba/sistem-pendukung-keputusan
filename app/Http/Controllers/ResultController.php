@@ -47,9 +47,10 @@ class ResultController extends Controller
         $value = $diseaseResult->value;
         $image = $disease->image;
         $determine = $disease->determine;
+        $suggestion = $disease->suggestion;
         $percentage = $value * 100;
 
-        return view('pages.result.view', compact('result', 'name', 'value', 'percentage', 'image', 'determine'));
+        return view('pages.result.view', compact('result', 'name', 'value', 'percentage', 'image', 'determine', 'suggestion'));
     }
 
     public function getActionColumn($data)
