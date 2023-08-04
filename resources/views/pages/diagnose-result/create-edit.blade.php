@@ -22,7 +22,7 @@
                         </blockquote>
                         @foreach ($eachSymptom as $keySymp => $eachSymp)
                             <div class="mb-3 row">
-                                <label for="selectSymptom" class="col-6 col-form-label">{{ $eachSymp }}</label>
+                                <label for="selectSymptom" class="col-6 col-form-label">{{ $loop->iteration . '. '. $eachSymp }}</label>
                                 <div class="col-6">
                                     <select class="form-select" id="selectSymptom_{{ $keySymp }}"
                                         name="symptom[{{ $keySymp }}][0]" aria-label="Default select example"
