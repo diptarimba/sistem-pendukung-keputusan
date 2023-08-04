@@ -30,7 +30,7 @@
             @if (Auth::user())
                 <x-sidebar.Single icons="fa-solid fa-house-user" title="Home" href="{{ route('home.index') }}"
                     currentsite="{{ Request()->is('/') ? true : false }}" />
-                <x-sidebar.Single icons="fa-solid fa-thermometer-three-quarters fa-fw" title="Symptom"
+                <x-sidebar.Single icons="fa-solid fa-thermometer-three-quarters fa-fw" title="{{ __('sidebar.Symptom') }}"
                     href="{{ route('symptom.index') }}" currentsite="{{ Route::is('symptom.*') ? true : false }}" />
                 <x-sidebar.Single icons="fa-solid fa-th fa-fw" title="{{ __('sidebar.Category') }}"
                     href="{{ route('category.index') }}" currentsite="{{ Route::is('category.*') ? true : false }}" />
