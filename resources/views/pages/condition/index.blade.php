@@ -9,7 +9,7 @@
 @section('content')
 <x-breadcrumbs category="Condition" href="{{ route('condition.index') }}" current="index" /><x-cards.fullpage>
 	<x-slot name="header">
-		<x-cards.header title="Condition" />
+		<x-cards.header title="{{__('page.Condition')}}" />
         @if (Auth::user())
 		<a class="btn btn-primary" href="{{ route('condition.create') }}">Tambah Data</a>
         @endif
