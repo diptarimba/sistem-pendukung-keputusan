@@ -47,6 +47,9 @@ class DiagnoseController extends Controller
                             $cflama = $cflama + ($cf * (1 - $cflama));
                         }
                         if ($cf * $cflama < 0) {
+                            if ((1 - Min(abs($cflama), abs($cf))) == 0) {
+                                continue;
+                            }
                             $cflama = ($cflama + $cf) / (1 - Min(abs($cflama), abs($cf)));
                         }
                         if (($cf < 0) && ($cf * $cflama >= 0)) {
@@ -65,6 +68,10 @@ class DiagnoseController extends Controller
         arsort($resDisease);
 
         $first = true;
+
+        if (empty($resDisease)) {
+            return back()->with('error', 'The diagnosis results did not find any diseases that match the symptoms you provided.');
+        }
 
         foreach ($resDisease as $eachRes) {
             foreach ($eachRes as $eachKeyResDisease => $eachValueResDisease) {
